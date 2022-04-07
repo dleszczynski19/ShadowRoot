@@ -99,7 +99,7 @@
         <dependency>
         <groupId>io.github.sukgu</groupId>
         <artifactId>automation</artifactId>
-        <version>0.0.4</version>
+        <version>0.1.4.1</version>
         </dependency>
     </dependencies>
     <build>
