@@ -1,0 +1,16 @@
+<configuration scan="true">
+    <include resource="appenders/console_appender.xml"/>
+    <include resource="appenders/json_file_appender.xml"/>
+    <include resource="appenders/log_file_appender.xml"/>
+    <include resource="appenders/xml_file_appender.xml"/>
+
+    <root level="info">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="LOG_FILE"/>
+        <appender-ref ref="JSON_FILE"/>
+        <appender-ref ref="ERRORS_FILE"/>
+        <appender-ref ref="JSON_CONSOLE"/>
+        <appender-ref ref="XML_FILE"/>
+        <appender-ref ref="PASSED"/>
+    </root>
+</configuration>

@@ -1,0 +1,43 @@
+<included>
+    <include resource="appenders/files_config.xml"/>
+    <property name="filePattern" value="[%thread] %marker %-5level %logger{35} - %msg%n"/>
+
+    <appender name="JSON_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${DEV_HOME}/json/${jsonName}${bySecond}.json</file>
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <fieldNames>
+                <levelValue>[ignore]</levelValue>
+                <version>[ignore]</version>
+            </fieldNames>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${jsonPath}.%i.zip</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>${totalSizeCap}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>${maxHistory}</maxHistory>
+        </rollingPolicy>
+    </appender>
+    <!--##########  ERROR FILE APPENDER  ##########-->
+    <appender name="ERRORS_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <file>${DEV_HOME}/errors/${errorsName}${bySecond}.json</file>
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <fieldNames>
+                <levelValue>[ignore]</levelValue>
+                <version>[ignore]</version>
+            </fieldNames>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${errorsPath}.%i.zip</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>${totalSizeCap}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>${maxHistory}</maxHistory>
+        </rollingPolicy>
+    </appender>
+</included>

@@ -1,0 +1,16 @@
+<included>
+    <include resource="appenders/files_config.xml"/>
+
+    <appender name="LOG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${DEV_HOME}/log/${fileName}${bySecond}.log</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${filePath}.zip</fileNamePattern>
+            <maxHistory>${maxHistory}</maxHistory>
+            <totalSizeCap>${totalSizeCap}</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${filePattern}</pattern>
+        </encoder>
+    </appender>
+</included>

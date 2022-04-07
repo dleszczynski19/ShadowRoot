@@ -1,0 +1,18 @@
+<included>
+    <include resource="appenders/files_config.xml"/>
+
+    <appender name="XML_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${DEV_HOME}/xml/${xmlName}${bySecond}.xml</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${xmlPath}.%i.zip</fileNamePattern>
+            <maxFileSize>${totalSizeCap}</maxFileSize>
+            <maxHistory>${maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+            <charset>UTF-8</charset>
+            <layout class="ch.qos.logback.classic.log4j.XMLLayout">
+                <properties>true</properties>
+            </layout>
+        </encoder>
+    </appender>
+</included>

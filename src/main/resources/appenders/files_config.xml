@@ -1,0 +1,16 @@
+<included>
+    <property name="DEV_HOME" value="${user.dir}/log"/>
+    <property name="maxHistory" value="3"/>
+    <property name="totalSizeCap" value="30KB"/>
+    <timestamp key="bySecond" datePattern="yyyyMMdd'T'HHmmss"/>
+    <!--##########  Names/Paths  ##########-->
+
+    <property name="fileName" value="timeBasedLogFile_"/>
+    <property name="jsonName" value="timeBasedJsonLogFile_"/>
+    <property name="errorsName" value="errorsFile_"/>
+    <property name="xmlName" value="timeBasedXMLLogFile_"/>
+    <property name="filePath" value="${DEV_HOME}/log/zip/timeBasedLogFile.%d{yyyy-MM-dd-HH-mm}"/>
+    <property name="jsonPath" value="${DEV_HOME}/json/zip/timeBasedJsonFile.%d{yyyy-MM-dd-HH-mm}"/>
+    <property name="errorsPath" value="${DEV_HOME}/errors/zip/errorsFile.%d{yyyy-MM-dd-HH-mm}"/>
+    <property name="xmlPath" value="${DEV_HOME}/xml/zip/timeBasedXMLFile.%d{yyyy-MM-dd-HH-mm}"/>
+</included>
