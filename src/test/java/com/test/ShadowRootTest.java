@@ -1,7 +1,7 @@
 package com.test;
 
 import com.configuration.TestBase;
-import com.google.downloads.DownloadPage;
+import com.pages.google.downloads.DownloadPage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
