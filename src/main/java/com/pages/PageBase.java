@@ -29,11 +29,17 @@ public abstract class PageBase {
     }
 
     public void highlightElement(WebElement element) {
-        jse.executeScript("arguments[0].setAttribute('style', 'border:2px solid red; background:yellow')", element);
+        jse.executeScript("const hue = Math.floor(Math.random() * 360);" +
+                "arguments[0].style.border = '2px solid hsl(' + hue + ', 100%, 80%)';" +
+                "arguments[0].style.background = 'hsl(' + hue + ', 100%, 50%)';", element);
     }
 
-    public void clearHighlight(WebElement element) {
-        jse.executeScript("arguments[0].setAttribute('style', 'border:0px solid transparent; background:transparent')", element);
+    public void clearHighlightBackground(WebElement element) {
+        jse.executeScript("arguments[0].style.background = 'transparent'", element);
+    }
+
+    public void clearHighlightBorder(WebElement element) {
+        jse.executeScript("arguments[0].style.background = 'none'", element);
     }
 
     private JavascriptExecutor initJSE(WebDriver driver) {

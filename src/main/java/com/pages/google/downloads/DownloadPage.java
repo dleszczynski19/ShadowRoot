@@ -13,7 +13,7 @@ public class DownloadPage extends ShadowPageBase {
 
     public WebElement getShadowRootElement(String selector) {
         highlightElement(driver.findElement(By.cssSelector(selector)));
-        clearHighlight(driver.findElement(By.cssSelector(selector)));
+        clearHighlightBackground(driver.findElement(By.cssSelector(selector)));
         return driver.findElement(By.cssSelector(selector));
     }
 }
