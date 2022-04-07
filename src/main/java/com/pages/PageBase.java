@@ -39,7 +39,7 @@ public abstract class PageBase {
     }
 
     public void clearHighlightBorder(WebElement element) {
-        jse.executeScript("arguments[0].style.background = 'none'", element);
+        jse.executeScript("arguments[0].style.border = 'none'", element);
     }
 
     private JavascriptExecutor initJSE(WebDriver driver) {
