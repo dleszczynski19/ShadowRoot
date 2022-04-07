@@ -13,6 +13,10 @@ public class ShadowDriver implements WebDriver {
     private final WebDriver driver;
     private final Shadow shadow;
 
+    public WebDriver getDriver(){
+        return driver;
+    }
+
     public ShadowDriver(WebDriver driver) {
         this.driver = driver;
         this.shadow = new Shadow(driver);

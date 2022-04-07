@@ -1,14 +1,15 @@
 package com.pages;
 
 import com.shadow.driver.ShadowDriver;
-import io.github.sukgu.Shadow;
 import org.openqa.selenium.WebDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-public abstract class ShadowPageBase extends PageBase{
-    protected ShadowDriver shadow;
+public abstract class ShadowPageBase extends PageBase {
+    private static final Logger logger = LoggerFactory.getLogger(ShadowPageBase.class.getName());
 
     public ShadowPageBase(WebDriver driver) {
-        super(driver);
-        shadow = new ShadowDriver(driver);
+        super(new ShadowDriver(driver));
+        logger.info("Created ShadwoPage");
     }
 }

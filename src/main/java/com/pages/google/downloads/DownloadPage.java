@@ -14,8 +14,8 @@ public class DownloadPage extends ShadowPageBase {
     }
 
     public WebElement getShadowRootElement(String cssSelector) {
-        highlightElement(shadow.findElement(By.cssSelector(cssSelector)));
-        clearHighlight(shadow.findElement(By.cssSelector(cssSelector)));
-        return shadow.findElement(By.cssSelector(cssSelector));
+        highlightElement(driver.findElement(By.cssSelector(cssSelector)));
+        clearHighlight(driver.findElement(By.cssSelector(cssSelector)));
+        return driver.findElement(By.cssSelector(cssSelector));
     }
 }
