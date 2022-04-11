@@ -18,11 +18,10 @@ public class ShadowRootTest extends TestBase {
 
         driver.get("chrome://downloads/");
         log.info("First Shadow Root Element: " + downloadPage.getShadowRootElement("downloads-toolbar").getText());
-        log.info("Second Shadow Root Element: " + downloadPage.getShadowRootElement("cr-toolbar").getText());
-        log.info("Third Shadow Root Element: " + downloadPage.getShadowRootElement("cr-icon-button").getAttribute("id"));
-        log.info("Fourth Shadow Root Element: " + downloadPage.getShadowRootElement("#moreActions #icon iron-icon").getTagName());
+        log.info("Second Shadow Root Element: " + downloadPage.getShadowRootElement("cr-icon-button").getAttribute("id"));
+        log.info("Third Shadow Root Element: " + downloadPage.getShadowRootElement("#moreActions #icon iron-icon").getTagName());
         downloadPage.getShadowRootElement("#moreActions #icon iron-icon").click();
-        log.info("Fifth Shadow Root Element: " + downloadPage
+        log.info("Fourth Shadow Root Element: " + downloadPage
                 .getShadowRootElement("#moreActions #icon iron-icon svg").getAttribute("style"));
     }
 }

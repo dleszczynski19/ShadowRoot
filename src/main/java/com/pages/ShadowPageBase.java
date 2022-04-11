@@ -10,6 +10,6 @@ public abstract class ShadowPageBase extends PageBase {
 
     public ShadowPageBase(WebDriver driver) {
         super(new ShadowDriver(driver));
-        logger.info("Created ShadwoPage");
+        logger.info("Created ShadowPage");
     }
 }
