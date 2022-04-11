@@ -13,9 +13,9 @@ import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
 
 public class TestBase {
-    public WebDriver driver;
-    private static Logger log = LoggerFactory.getLogger(TestBase.class);
     public static Marker passed = MarkerFactory.getMarker("PASSED");
+    private static Logger log = LoggerFactory.getLogger(TestBase.class);
+    public WebDriver driver;
 
     @BeforeAll
     static void setup() {

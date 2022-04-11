@@ -1,10 +1,12 @@
 package com.pages;
 
 import com.shadow.driver.ShadowDriver;
+import io.github.sukgu.support.ElementFieldDecorator;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.pagefactory.DefaultElementLocatorFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,11 +23,19 @@ public abstract class PageBase {
     protected final JavascriptExecutor jse;
 
     public PageBase(WebDriver driver) {
-        this.driver = driver;
-        this.jse = initJSE(driver);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(TIMEOUT_S), Duration.ofMillis(SLEEP_MS));
+        if (driver instanceof ShadowDriver) {
+            this.driver = ((ShadowDriver) driver).getDriver();
+            ElementFieldDecorator decorator = new ElementFieldDecorator(new DefaultElementLocatorFactory(this.driver));
+            // need to use decorator if you want to use @FindElementBy in your PageFactory model.
+            PageFactory.initElements(decorator, this);
+        } else {
+            this.driver = driver;
+            PageFactory.initElements(this.driver, this);
+        }
+
+        this.jse = (JavascriptExecutor) this.driver;
+        wait = new WebDriverWait(this.driver, Duration.ofSeconds(TIMEOUT_S), Duration.ofMillis(SLEEP_MS));
         logger.debug("Created WebDriverWait with timeout: " + TIMEOUT_S + "s and sleep: " + SLEEP_MS + "ms");
-        PageFactory.initElements(driver, this);
     }
 
     public void highlightElement(WebElement element) {
@@ -40,12 +50,5 @@ public abstract class PageBase {
 
     public void clearHighlightBorder(WebElement element) {
         jse.executeScript("arguments[0].style.border = 'none'", element);
-    }
-
-    private JavascriptExecutor initJSE(WebDriver driver) {
-        if (driver instanceof ShadowDriver) {
-            return (JavascriptExecutor) ((ShadowDriver) driver).getDriver();
-        }
-        return (JavascriptExecutor) driver;
     }
 }
