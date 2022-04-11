@@ -6,27 +6,50 @@ import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class DownloadPage extends ShadowPageBase {
-    private Map<Integer, WebElement> shadowRootMap;
+    private Map<String, WebElement> shadowRootMap = new HashMap<>();
 
     public DownloadPage(WebDriver driver) {
         super(driver);
     }
 
     public WebElement getShadowRootElement(String selector) {
-        highlightElement(driver.findElement(By.cssSelector(selector)));
-        clearHighlightBackground(driver.findElement(By.cssSelector(selector)));
-        return driver.findElement(By.cssSelector(selector));
+        WebElement element = driver.findElement(By.cssSelector(selector));
+        highlightElement(element);
+        clearHighlightBackground(element);
+        return element;
     }
 
     public WebElement getShadowRootByJS(WebElement shadowHost, String selector) {
+        WebElement element = getElement(shadowHost, selector);
+        shadowRootMap.put(String.valueOf(getMapSize() + 1), element);
+        return element;
+    }
+
+    public WebElement getShadowRootByJS(WebElement shadowHost, String selector, String keyValue) {
+        WebElement element = getElement(shadowHost, selector);
+        shadowRootMap.put(keyValue, element);
+        return element;
+    }
+
+    public Map<String, WebElement> getShadowRootMap() {
+        return shadowRootMap;
+    }
+
+    private WebElement getElement(WebElement shadowHost, String selector) {
         SearchContext shadowRoot = shadowHost.getShadowRoot();
         highlightElement(shadowHost);
         clearHighlightBackground(shadowHost);
-        highlightElement(shadowRoot.findElement(By.cssSelector(selector)));
-        clearHighlightBackground(shadowRoot.findElement(By.cssSelector(selector)));
-        return shadowRoot.findElement(By.cssSelector(selector));
+        WebElement element = shadowRoot.findElement(By.cssSelector(selector));
+        highlightElement(element);
+        clearHighlightBackground(element);
+        return element;
+    }
+
+    private int getMapSize() {
+        return shadowRootMap.size();
     }
 }
