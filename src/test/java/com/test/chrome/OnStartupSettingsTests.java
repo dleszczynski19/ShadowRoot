@@ -1,7 +1,7 @@
 package com.test.chrome;
 
-import com.test.TestBase;
 import com.pages.chrome.chrome.OnStartupSettingsPage;
+import com.test.TestBase;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -21,14 +21,15 @@ public class OnStartupSettingsTests extends TestBase {
         // Arrange
         OnStartupSettingsPage onStartupSettingsPage = new OnStartupSettingsPage(driver);
         driver.get("chrome://settings/onStartup");
+        String pageUrlToAdd = "https://sii.pl/";
 
         // Act
         onStartupSettingsPage.selectStartupOption("Otwórz konkretną stronę lub zestaw stron")
-                .addStartupPage("https://sii.pl/");
+                .addStartupPage(pageUrlToAdd);
         List<String> sut = onStartupSettingsPage.getStartupPages();
 
         // Assert
         log.info("Startup page urls: " + sut);
-        assertThat(sut, hasItems("https://sii.pl/"));
+        assertThat(sut, hasItems(pageUrlToAdd));
     }
 }
