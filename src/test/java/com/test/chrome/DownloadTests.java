@@ -1,8 +1,8 @@
-package com.test;
+package com.test.chrome;
 
-import com.configuration.TestBase;
+import com.test.TestBase;
 import com.helpers.Timer;
-import com.pages.google.chrome.DownloadPage;
+import com.pages.chrome.chrome.DownloadPage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;

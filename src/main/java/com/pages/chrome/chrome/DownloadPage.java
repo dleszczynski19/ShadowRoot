@@ -1,4 +1,4 @@
-package com.pages.google.chrome;
+package com.pages.chrome.chrome;
 
 import com.pages.ShadowPageBase;
 import org.openqa.selenium.By;

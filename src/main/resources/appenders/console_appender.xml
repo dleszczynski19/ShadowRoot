@@ -12,7 +12,7 @@
         <encoder class="com.loggerConfig.MultiLayoutPattern">
             <pattern>${consoleDefaultPattern}</pattern>
             <rule>
-                <logger>com.configuration.TestBase</logger>
+                <logger>com.test.TestBase</logger>
                 <pattern>${consoleDriverPattern}</pattern>
             </rule>
             <rule>

@@ -1,7 +1,7 @@
-package com.test;
+package com.test.chrome;
 
-import com.configuration.TestBase;
-import com.pages.google.chrome.OnStartupSettingsPage;
+import com.test.TestBase;
+import com.pages.chrome.chrome.OnStartupSettingsPage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -13,7 +13,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsIterableContaining.hasItems;
 
 public class OnStartupSettingsTests extends TestBase {
-    private static Logger log = LoggerFactory.getLogger(ShadowRootExtendedTest.class);
+    private static Logger log = LoggerFactory.getLogger(OnStartupSettingsTests.class);
 
     @Test
     @DisplayName("Shadow root tests with using Page Object Pattern")
