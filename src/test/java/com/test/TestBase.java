@@ -15,24 +15,24 @@ import org.slf4j.MarkerFactory;
 public class TestBase {
     public static Marker passed = MarkerFactory.getMarker("PASSED");
     public static String passedMessage = "Test passed!";
-    private static Logger log = LoggerFactory.getLogger(TestBase.class);
+    private static Logger logger = LoggerFactory.getLogger(TestBase.class);
     public WebDriver driver;
 
     @BeforeAll
     static void setup() {
         WebDriverManager.chromedriver().setup();
-        log.info("Driver setup properly");
+        logger.info("Driver setup properly");
     }
 
     @BeforeEach
     void initializeDriver() {
         driver = new ChromeDriver(new ChromeOptions().addArguments("start-maximized"));
-        log.info("Driver initialized properly");
+        logger.info("Driver initialized properly");
     }
 
     @AfterEach
     void tearDown() {
         driver.quit();
-        log.info("Driver closed properly");
+        logger.info("Driver closed properly");
     }
 }

@@ -36,6 +36,4 @@ public abstract class PageBase {
         wait = new WebDriverWait(this.driver, Duration.ofSeconds(TIMEOUT_S), Duration.ofMillis(SLEEP_MS));
         logger.debug("Created WebDriverWait with timeout: " + TIMEOUT_S + "s and sleep: " + SLEEP_MS + "ms");
     }
-
-
 }

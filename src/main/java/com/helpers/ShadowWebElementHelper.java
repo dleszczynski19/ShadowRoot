@@ -43,7 +43,6 @@ public class ShadowWebElementHelper extends WebElementHelper {
     private WebElement getElement(WebElement shadowHost, String selector) {
         SearchContext shadowRoot = shadowHost.getShadowRoot();
         highlightElement(shadowHost);
-
         WebElement element = shadowRoot.findElement(By.cssSelector(selector));
         highlightElement(element);
 
