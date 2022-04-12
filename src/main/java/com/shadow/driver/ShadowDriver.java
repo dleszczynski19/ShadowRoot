@@ -9,13 +9,12 @@ import org.openqa.selenium.WebElement;
 import java.util.List;
 import java.util.Set;
 
-public class ShadowDriver implements WebDriver {
-    private final WebDriver driver;
-    private final Shadow shadow;
+public class ShadowDriver extends Shadow implements WebDriver {
+    private final WebDriver driver; // needed due to private driver field in Shadow class..
 
     public ShadowDriver(WebDriver driver) {
+        super(driver);
         this.driver = driver;
-        this.shadow = new Shadow(driver);
     }
 
     public WebDriver getDriver() {
@@ -42,15 +41,15 @@ public class ShadowDriver implements WebDriver {
         String selector = getSelector(by);
 
         if (by instanceof By.ByCssSelector) {
-            return shadow.findElements(selector);
+            return findElements(selector);
         } else if (by instanceof By.ByName) {
-            return shadow.findElements("[name=" + selector + "\"]");
+            return findElements("[name=" + selector + "\"]");
         } else if (by instanceof By.ByXPath) {
-            return shadow.findElementsByXPath(selector);
+            return findElementsByXPath(selector);
         } else if (by instanceof By.ById) {
-            return shadow.findElements("#" + selector);
+            return findElements("#" + selector);
         } else if (by instanceof By.ByClassName) {
-            return shadow.findElements("[class=" + selector + "]");
+            return findElements("[class=" + selector + "]");
         }
         throw new UnsupportedShadowSelector("Selector: " + selector + " is not supported yet.");
     }
@@ -60,15 +59,15 @@ public class ShadowDriver implements WebDriver {
         String selector = getSelector(by);
 
         if (by instanceof By.ByCssSelector) {
-            return shadow.findElement(selector);
+            return findElement(selector);
         } else if (by instanceof By.ByName) {
-            return shadow.findElement("[name=" + selector + "\"]");
+            return findElement("[name=" + selector + "\"]");
         } else if (by instanceof By.ByXPath) {
-            return shadow.findElementByXPath(selector);
+            return findElementByXPath(selector);
         } else if (by instanceof By.ById) {
-            return shadow.findElement("#" + selector);
+            return findElement("#" + selector);
         } else if (by instanceof By.ByClassName) {
-            return shadow.findElement("[class=" + selector + "]");
+            return findElement("[class=" + selector + "]");
         }
         throw new UnsupportedShadowSelector("Selector: " + selector + " is not supported yet.");
     }
