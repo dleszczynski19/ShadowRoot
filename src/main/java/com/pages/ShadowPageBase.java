@@ -11,6 +11,8 @@ import org.slf4j.LoggerFactory;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.helpers.WebElementHelper.highlightElement;
+
 public abstract class ShadowPageBase extends PageBase {
     private static final Logger logger = LoggerFactory.getLogger(ShadowPageBase.class.getName());
     private Map<String, WebElement> shadowRootMap = new HashMap<>();
@@ -22,8 +24,7 @@ public abstract class ShadowPageBase extends PageBase {
 
     public WebElement getShadowRootElement(String selector) {   // using shadow driver wrapper
         WebElement element = driver.findElement(By.cssSelector(selector));
-        highlightElement(element);
-        clearHighlightBackground(element);
+        highlightElement(element, driver);
         return element;
     }
 
@@ -45,12 +46,10 @@ public abstract class ShadowPageBase extends PageBase {
 
     private WebElement getElement(WebElement shadowHost, String selector) {
         SearchContext shadowRoot = shadowHost.getShadowRoot();
-        highlightElement(shadowHost);
-        clearHighlightBackground(shadowHost);
+        highlightElement(shadowHost, driver);
 
         WebElement element = shadowRoot.findElement(By.cssSelector(selector));
-        highlightElement(element);
-        clearHighlightBackground(element);
+        highlightElement(element, driver);
         return element;
     }
 }

@@ -4,7 +4,6 @@ import com.shadow.driver.ShadowDriver;
 import io.github.sukgu.support.ElementFieldDecorator;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.DefaultElementLocatorFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -38,17 +37,5 @@ public abstract class PageBase {
         logger.debug("Created WebDriverWait with timeout: " + TIMEOUT_S + "s and sleep: " + SLEEP_MS + "ms");
     }
 
-    public void highlightElement(WebElement element) {
-        jse.executeScript("const hue = Math.floor(Math.random() * 360);" +
-                "arguments[0].style.border = '2px solid hsl(' + hue + ', 100%, 80%)';" +
-                "arguments[0].style.background = 'hsl(' + hue + ', 100%, 50%)';", element);
-    }
 
-    public void clearHighlightBackground(WebElement element) {
-        jse.executeScript("arguments[0].style.background = 'transparent'", element);
-    }
-
-    public void clearHighlightBorder(WebElement element) {
-        jse.executeScript("arguments[0].style.border = 'none'", element);
-    }
 }
