@@ -39,7 +39,7 @@ public class DownloadTests extends TestBase {
         WebElement fourthShadowLevel = shadowHelper.getShadowRootElement("#moreActions #icon iron-icon svg");
         logger.info("Fourth Shadow Root Element: " + fourthShadowLevel.getAttribute("style"));
 
-        logger.info("Time elapsed: " + watch.time());
+        logger.info("Time elapsed: " + watch.time() + "ms");
 
         // Assert
         MatcherAssert.assertThat(fourthShadowLevel.getTagName(), equalTo("svg"));
@@ -72,7 +72,7 @@ public class DownloadTests extends TestBase {
         WebElement fourthShadowLevel = shadowHelper.getShadowRootByJS(fourthShadowRootElement, "svg");
         logger.info("Fourth Shadow Root Element: " + fourthShadowLevel.getAttribute("style"));
 
-        logger.info("Time elapsed: " + watch.time());
+        logger.info("Time elapsed: " + watch.time() + "ms");
 
         // Assert
         MatcherAssert.assertThat(fourthShadowLevel.getTagName(), equalTo("svg"));
