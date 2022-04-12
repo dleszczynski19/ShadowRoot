@@ -24,16 +24,16 @@ public abstract class PageBase {
 
     public PageBase(WebDriver driver) {
         if (driver instanceof ShadowDriver) {
-            this.driver = ((ShadowDriver) driver).getDriver();
-            ElementFieldDecorator decorator = new ElementFieldDecorator(new DefaultElementLocatorFactory(this.driver));
+            WebDriver pageFactoryDriver = ((ShadowDriver) driver).getDriver();
+            ElementFieldDecorator decorator = new ElementFieldDecorator(new DefaultElementLocatorFactory(pageFactoryDriver));
             // need to use decorator if you want to use @FindElementBy in your PageFactory model.
             PageFactory.initElements(decorator, this);
+            this.jse = (JavascriptExecutor) pageFactoryDriver;
         } else {
-            this.driver = driver;
-            PageFactory.initElements(this.driver, this);
+            PageFactory.initElements(driver, this);
+            this.jse = (JavascriptExecutor) driver;
         }
-
-        this.jse = (JavascriptExecutor) this.driver;
+        this.driver = driver;
         wait = new WebDriverWait(this.driver, Duration.ofSeconds(TIMEOUT_S), Duration.ofMillis(SLEEP_MS));
         logger.debug("Created WebDriverWait with timeout: " + TIMEOUT_S + "s and sleep: " + SLEEP_MS + "ms");
     }
