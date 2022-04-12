@@ -24,11 +24,11 @@ public abstract class PageBase {
 
     public PageBase(WebDriver driver) {
         if (driver instanceof ShadowDriver) {
-            WebDriver pageFactoryDriver = ((ShadowDriver) driver).getDriver();
-            ElementFieldDecorator decorator = new ElementFieldDecorator(new DefaultElementLocatorFactory(pageFactoryDriver));
+            WebDriver baseDriver = ((ShadowDriver) driver).getDriver();
+            ElementFieldDecorator decorator = new ElementFieldDecorator(new DefaultElementLocatorFactory(baseDriver));
             // need to use decorator if you want to use @FindElementBy in your PageFactory model.
             PageFactory.initElements(decorator, this);
-            this.jse = (JavascriptExecutor) pageFactoryDriver;
+            this.jse = (JavascriptExecutor) baseDriver;
         } else {
             PageFactory.initElements(driver, this);
             this.jse = (JavascriptExecutor) driver;
