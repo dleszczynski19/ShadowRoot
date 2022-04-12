@@ -31,5 +31,6 @@ public class OnStartupSettingsTests extends TestBase {
         // Assert
         log.info("Startup page urls: " + sut);
         assertThat(sut, hasItems(pageUrlToAdd));
+        log.info(passed, passedMessage);
     }
 }

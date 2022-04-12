@@ -1,13 +1,16 @@
 package com.test.chrome;
 
-import com.test.TestBase;
 import com.helpers.Timer;
 import com.pages.chrome.chrome.DownloadPage;
+import com.test.TestBase;
+import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import static org.hamcrest.Matchers.equalTo;
 
 public class DownloadTests extends TestBase {
     private static final String URL = "chrome://downloads/";
@@ -22,15 +25,18 @@ public class DownloadTests extends TestBase {
 
         // Act
         Timer watch = Timer.start();
-
         log.info("First Shadow Root Element: " + downloadPage.getShadowRootElement("downloads-toolbar").getText());
         log.info("Second Shadow Root Element: " + downloadPage.getShadowRootElement("cr-icon-button").getAttribute("id"));
         log.info("Third Shadow Root Element: " + downloadPage.getShadowRootElement("#moreActions #icon iron-icon").getTagName());
         downloadPage.getShadowRootElement("#moreActions #icon iron-icon").click();
         log.info("Fourth Shadow Root Element: " + downloadPage
                 .getShadowRootElement("#moreActions #icon iron-icon svg").getAttribute("style"));
-
         log.info("Time elapsed: " + watch.time());
+
+        // Assert
+        MatcherAssert.assertThat(downloadPage.getShadowRootElement("#moreActions #icon iron-icon svg")
+                .getTagName(), equalTo("svg"));
+        log.info(passed, passedMessage);
     }
 
     @Test
@@ -42,7 +48,6 @@ public class DownloadTests extends TestBase {
 
         // Act
         Timer watch = Timer.start();
-
         log.info("First Shadow Root Element: " + downloadPage.getShadowRootByJS(driver.findElement(By.cssSelector("downloads-manager")),
                 "downloads-toolbar").getText());
         log.info("Second Shadow Root Element: " + downloadPage.getShadowRootByJS(downloadPage.getShadowRootMap().get("1"),
@@ -52,7 +57,11 @@ public class DownloadTests extends TestBase {
         downloadPage.getShadowRootByJS(downloadPage.getShadowRootMap().get("second"), "#icon iron-icon").click();
         log.info("Fourth Shadow Root Element: " + downloadPage.getShadowRootByJS(downloadPage.getShadowRootMap().get("3"),
                 "svg").getAttribute("style"));
-
         log.info("Time elapsed: " + watch.time());
+
+        // Assert
+        MatcherAssert.assertThat(downloadPage.getShadowRootByJS(downloadPage.getShadowRootMap().get("3"), "svg")
+                .getTagName(), equalTo("svg"));
+        log.info(passed, passedMessage);
     }
 }

@@ -42,12 +42,6 @@ public class ShadowDriver implements WebDriver {
     public List<WebElement> findElements(By by) {
         String selector = getSelector(by);
 
-        try {
-            printFields(by);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-
         if (by instanceof By.ByCssSelector) {
             return shadow.findElements(selector);
         } else if (by instanceof By.ByName) {
@@ -65,11 +59,6 @@ public class ShadowDriver implements WebDriver {
     @Override
     public WebElement findElement(By by) {
         String selector = getSelector(by);
-        try {
-            printFields(by);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
 
         if (by instanceof By.ByCssSelector) {
             return shadow.findElement(selector);

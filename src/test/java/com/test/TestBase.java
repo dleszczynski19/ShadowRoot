@@ -14,6 +14,7 @@ import org.slf4j.MarkerFactory;
 
 public class TestBase {
     public static Marker passed = MarkerFactory.getMarker("PASSED");
+    public static String passedMessage = "Test passed!";
     private static Logger log = LoggerFactory.getLogger(TestBase.class);
     public WebDriver driver;
 
