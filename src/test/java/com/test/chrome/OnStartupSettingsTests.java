@@ -13,7 +13,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsIterableContaining.hasItems;
 
 public class OnStartupSettingsTests extends TestBase {
-    private static Logger log = LoggerFactory.getLogger(OnStartupSettingsTests.class);
+    private static Logger logger = LoggerFactory.getLogger(OnStartupSettingsTests.class);
 
     @Test
     @DisplayName("Shadow root tests with using Page Object Pattern")
@@ -29,8 +29,8 @@ public class OnStartupSettingsTests extends TestBase {
         List<String> sut = onStartupSettingsPage.getStartupPages();
 
         // Assert
-        log.info("Startup page urls: " + sut);
+        logger.info("Startup page urls: " + sut);
         assertThat(sut, hasItems(pageUrlToAdd));
-        log.info(passed, passedMessage);
+        logger.info(passed, passedMessage);
     }
 }

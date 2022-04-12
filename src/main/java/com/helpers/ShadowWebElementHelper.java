@@ -1,6 +1,6 @@
-package com.pages.chrome.chrome;
+package com.helpers;
 
-import com.pages.ShadowPageBase;
+import io.github.sukgu.Shadow;
 import org.openqa.selenium.By;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
@@ -9,23 +9,24 @@ import org.openqa.selenium.WebElement;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DownloadPage extends ShadowPageBase {
+public class ShadowWebElementHelper extends WebElementHelper {
+    private final Shadow shadow;
     private Map<String, WebElement> shadowRootMap = new HashMap<>();
 
-    public DownloadPage(WebDriver driver) {
+    public ShadowWebElementHelper(WebDriver driver) {
         super(driver);
+        this.shadow = new Shadow(driver);
     }
 
     public WebElement getShadowRootElement(String selector) {
-        WebElement element = driver.findElement(By.cssSelector(selector));
+        WebElement element = shadow.findElement(selector);
         highlightElement(element);
-        clearHighlightBackground(element);
         return element;
     }
 
     public WebElement getShadowRootByJS(WebElement shadowHost, String selector) {
         WebElement element = getElement(shadowHost, selector);
-        shadowRootMap.put(String.valueOf(getMapSize() + 1), element);
+        shadowRootMap.put(String.valueOf(shadowRootMap.size() + 1), element);
         return element;
     }
 
@@ -42,14 +43,9 @@ public class DownloadPage extends ShadowPageBase {
     private WebElement getElement(WebElement shadowHost, String selector) {
         SearchContext shadowRoot = shadowHost.getShadowRoot();
         highlightElement(shadowHost);
-        clearHighlightBackground(shadowHost);
         WebElement element = shadowRoot.findElement(By.cssSelector(selector));
         highlightElement(element);
-        clearHighlightBackground(element);
-        return element;
-    }
 
-    private int getMapSize() {
-        return shadowRootMap.size();
+        return element;
     }
 }

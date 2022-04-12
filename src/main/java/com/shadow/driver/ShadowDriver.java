@@ -6,7 +6,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Set;
 
@@ -72,46 +71,6 @@ public class ShadowDriver implements WebDriver {
             return shadow.findElement("[class=" + selector + "]");
         }
         throw new UnsupportedShadowSelector("Selector: " + selector + " is not supported yet.");
-    }
-
-    private void printFields(By by) throws IllegalAccessException {
-
-        if (by instanceof By.ByCssSelector) {
-            for (Field field : ((By.ByCssSelector) by).getClass().getDeclaredFields()) {
-                field.setAccessible(true);
-                String name = field.getName();
-                Object value = field.get(by);
-                System.out.printf("%s: %s%n", name, value);
-            }
-        } else if (by instanceof By.ByName) {
-            for (Field field : ((By.ByName) by).getClass().getDeclaredFields()) {
-                field.setAccessible(true);
-                String name = field.getName();
-                Object value = field.get(by);
-                System.out.printf("%s: %s%n", name, value);
-            }
-        } else if (by instanceof By.ByXPath) {
-            for (Field field : ((By.ByXPath) by).getClass().getDeclaredFields()) {
-                field.setAccessible(true);
-                String name = field.getName();
-                Object value = field.get(by);
-                System.out.printf("%s: %s%n", name, value);
-            }
-        } else if (by instanceof By.ById) {
-            for (Field field : ((By.ById) by).getClass().getDeclaredFields()) {
-                field.setAccessible(true);
-                String name = field.getName();
-                Object value = field.get(by);
-                System.out.printf("%s: %s%n", name, value);
-            }
-        } else if (by instanceof By.ByClassName) {
-            for (Field field : ((By.ByClassName) by).getClass().getDeclaredFields()) {
-                field.setAccessible(true);
-                String name = field.getName();
-                Object value = field.get(by);
-                System.out.printf("%s: %s%n", name, value);
-            }
-        }
     }
 
     @Override
