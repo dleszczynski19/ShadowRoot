@@ -9,21 +9,18 @@ import org.openqa.selenium.WebElement;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.helpers.WebElementHelper.highlightElement;
-
-public class ShadowWebElementHelper {
-    private final WebDriver driver;
+public class ShadowWebElementHelper extends WebElementHelper {
     private final Shadow shadow;
     private Map<String, WebElement> shadowRootMap = new HashMap<>();
 
     public ShadowWebElementHelper(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
         this.shadow = new Shadow(driver);
     }
 
     public WebElement getShadowRootElement(String selector) {
         WebElement element = shadow.findElement(selector);
-        highlightElement(element, driver);
+        highlightElement(element);
         return element;
     }
 
@@ -45,10 +42,10 @@ public class ShadowWebElementHelper {
 
     private WebElement getElement(WebElement shadowHost, String selector) {
         SearchContext shadowRoot = shadowHost.getShadowRoot();
-        highlightElement(shadowHost, driver);
+        highlightElement(shadowHost);
 
         WebElement element = shadowRoot.findElement(By.cssSelector(selector));
-        highlightElement(element, driver);
+        highlightElement(element);
 
         return element;
     }

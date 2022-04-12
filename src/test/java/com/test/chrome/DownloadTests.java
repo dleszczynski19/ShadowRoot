@@ -26,7 +26,7 @@ public class DownloadTests extends TestBase {
 
         // Act
         Timer watch = Timer.start();
-        
+
         WebElement firstShadowLevel = shadowHelper.getShadowRootElement("downloads-toolbar");
         log.info("First Shadow Root Element: " + firstShadowLevel.getText());
 
@@ -75,7 +75,7 @@ public class DownloadTests extends TestBase {
         log.info("Time elapsed: " + watch.time());
 
         // Assert
-        MatcherAssert.assertThat(fourthShadowLevel.getAttribute("style"), equalTo("svg"));
+        MatcherAssert.assertThat(fourthShadowLevel.getTagName(), equalTo("svg"));
         log.info(passed, passedMessage);
     }
 }
