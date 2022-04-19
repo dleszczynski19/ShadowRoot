@@ -25,9 +25,7 @@ public class ShadowWebElementHelper extends WebElementHelper {
     }
 
     public WebElement getShadowRootByJS(WebElement shadowHost, String selector) {
-        WebElement element = getElement(shadowHost, selector);
-        shadowRootMap.put(String.valueOf(shadowRootMap.size() + 1), element);
-        return element;
+        return getElement(shadowHost, selector);
     }
 
     public WebElement getShadowRootByJS(WebElement shadowHost, String selector, String keyValue) {

@@ -60,16 +60,13 @@ public class DownloadTests extends TestBase {
         WebElement firstShadowLevel = shadowHelper.getShadowRootByJS(firstShadowRootElement, "downloads-toolbar");
         logger.info("First Shadow Root Element: " + firstShadowLevel.getText());
 
-        WebElement secondShadowRootElement = shadowHelper.getShadowRootMap().get("1");
-        WebElement secondShadowLevel = shadowHelper.getShadowRootByJS(secondShadowRootElement, "cr-icon-button", "second");
+        WebElement secondShadowLevel = shadowHelper.getShadowRootByJS(firstShadowLevel, "cr-icon-button");
         logger.info("Second Shadow Root Element: " + secondShadowLevel.getAttribute("id"));
 
-        WebElement thirdShadowRootElement = shadowHelper.getShadowRootMap().get("second");
-        WebElement thirdShadowLevel = shadowHelper.getShadowRootByJS(thirdShadowRootElement, "#icon iron-icon");
+        WebElement thirdShadowLevel = shadowHelper.getShadowRootByJS(secondShadowLevel, "#icon iron-icon");
         logger.info("Third Shadow Root Element: " + thirdShadowLevel.getTagName());
 
-        WebElement fourthShadowRootElement = shadowHelper.getShadowRootMap().get("3");
-        WebElement fourthShadowLevel = shadowHelper.getShadowRootByJS(fourthShadowRootElement, "svg");
+        WebElement fourthShadowLevel = shadowHelper.getShadowRootByJS(thirdShadowLevel, "svg");
         logger.info("Fourth Shadow Root Element: " + fourthShadowLevel.getAttribute("style"));
 
         logger.info("Time elapsed: " + watch.time() + "ms");
