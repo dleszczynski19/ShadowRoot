@@ -24,11 +24,11 @@ public class ShadowWebElementHelper extends WebElementHelper {
         return element;
     }
 
-    public WebElement getShadowRootByJS(WebElement shadowHost, String selector) {
+    public WebElement getShadowRootBySearchContext(WebElement shadowHost, String selector) {
         return getElement(shadowHost, selector);
     }
 
-    public WebElement getShadowRootByJS(WebElement shadowHost, String selector, String keyValue) {
+    public WebElement getShadowRootBySearchContext(WebElement shadowHost, String selector, String keyValue) {
         WebElement element = getElement(shadowHost, selector);
         shadowRootMap.put(keyValue, element);
         return element;

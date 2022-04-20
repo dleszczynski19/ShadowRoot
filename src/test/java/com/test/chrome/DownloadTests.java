@@ -47,7 +47,7 @@ public class DownloadTests extends TestBase {
     }
 
     @Test
-    @DisplayName("Shadow root old approach test using JS")
+    @DisplayName("Shadow root old approach test using SearchContext")
     public void shouldManageOldApproachShadowRoot() {
         // Arrange
         ShadowWebElementHelper shadowHelper = new ShadowWebElementHelper(driver);
@@ -58,16 +58,16 @@ public class DownloadTests extends TestBase {
 
         WebElement firstShadowRootElement = driver.findElement(By.cssSelector("downloads-manager"));
 
-        WebElement firstShadowLevel = shadowHelper.getShadowRootByJS(firstShadowRootElement, "downloads-toolbar");
+        WebElement firstShadowLevel = shadowHelper.getShadowRootBySearchContext(firstShadowRootElement, "downloads-toolbar");
         logger.info("First Shadow Root Element: " + firstShadowLevel.getText());
 
-        WebElement secondShadowLevel = shadowHelper.getShadowRootByJS(firstShadowLevel, "cr-icon-button");
+        WebElement secondShadowLevel = shadowHelper.getShadowRootBySearchContext(firstShadowLevel, "cr-icon-button");
         logger.info("Second Shadow Root Element: " + secondShadowLevel.getAttribute("id"));
 
-        WebElement thirdShadowLevel = shadowHelper.getShadowRootByJS(secondShadowLevel, "#icon iron-icon");
+        WebElement thirdShadowLevel = shadowHelper.getShadowRootBySearchContext(secondShadowLevel, "#icon iron-icon");
         logger.info("Third Shadow Root Element: " + thirdShadowLevel.getTagName());
 
-        WebElement fourthShadowLevel = shadowHelper.getShadowRootByJS(thirdShadowLevel, "svg");
+        WebElement fourthShadowLevel = shadowHelper.getShadowRootBySearchContext(thirdShadowLevel, "svg");
         logger.info("Fourth Shadow Root Element: " + fourthShadowLevel.getAttribute("style"));
 
         logger.info("Time elapsed: " + watch.time() + "ms");
