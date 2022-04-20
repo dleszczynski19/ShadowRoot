@@ -11,13 +11,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class OnStartupSettingsPage extends ShadowPageBase {
-
-    @FindBy(css = "body")
-    private WebElement body;
-
-    @FindBy(css = "#searchInput")
-    private WebElement searchField;
-
+    
     @FindBy(css = "#onStartupRadioGroup #label")
     private List<WebElement> startupOptions;
 
@@ -29,9 +23,6 @@ public class OnStartupSettingsPage extends ShadowPageBase {
 
     @FindBy(css = "#dialog #actionButton")
     private WebElement confirmDialogButton;
-
-    @FindBy(css = "#dialog #cancel-button")
-    private WebElement cancelDialogButton;
 
     @FindBy(css = "settings-startup-url-entry .text-elide.secondary")
     private List<WebElement> startupPagesUrls;
