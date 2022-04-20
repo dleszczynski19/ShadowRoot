@@ -57,6 +57,7 @@ public class DownloadTests extends TestBase {
         Timer watch = Timer.start();
 
         WebElement firstShadowRootElement = driver.findElement(By.cssSelector("downloads-manager"));
+
         WebElement firstShadowLevel = shadowHelper.getShadowRootByJS(firstShadowRootElement, "downloads-toolbar");
         logger.info("First Shadow Root Element: " + firstShadowLevel.getText());
 

@@ -24,8 +24,10 @@ public class OnStartupSettingsTests extends TestBase {
         String pageUrlToAdd = "https://sii.pl/";
 
         // Act
-        onStartupSettingsPage.selectStartupOption("Otwórz konkretną stronę lub zestaw stron")
+        onStartupSettingsPage
+                .selectStartupOption("Otwórz konkretną stronę lub zestaw stron")
                 .addStartupPage(pageUrlToAdd);
+        
         List<String> sut = onStartupSettingsPage.getStartupPages();
 
         // Assert

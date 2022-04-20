@@ -96,11 +96,15 @@
             <artifactId>logback-logstash-syntax-highlighting-decorators</artifactId>
             <version>${logtash.decorator.version}</version>
         </dependency>
+
         <dependency>
-        <groupId>io.github.sukgu</groupId>
-        <artifactId>automation</artifactId>
-        <version>0.1.4.1</version>
+            <groupId>shadow-automation-selenium</groupId>
+            <artifactId>shadow-automation-selenium</artifactId>
+            <scope>system</scope>
+            <version>1.0</version>
+            <systemPath>${basedir}\src\lib\shadow-automation-selenium.jar</systemPath>
         </dependency>
+
     </dependencies>
     <build>
         <plugins>

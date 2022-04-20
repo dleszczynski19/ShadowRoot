@@ -1,10 +1,10 @@
 package com.pages.chrome.chrome;
 
 import com.pages.ShadowPageBase;
-import io.github.sukgu.support.FindElementBy;
 import org.openqa.selenium.NotFoundException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 import java.util.Objects;
@@ -12,28 +12,28 @@ import java.util.stream.Collectors;
 
 public class OnStartupSettingsPage extends ShadowPageBase {
 
-    @FindElementBy(css = "#searchInput")
+    @FindBy(css = "body")
+    private WebElement body;
+
+    @FindBy(css = "#searchInput")
     private WebElement searchField;
 
-    @FindElementBy(css = "#onStartupRadioGroup #label")
+    @FindBy(css = "#onStartupRadioGroup #label")
     private List<WebElement> startupOptions;
 
-    @FindElementBy(css = "#addPage")
+    @FindBy(css = "#addPage a")
     private WebElement addNewPageOption;
 
-    @FindElementBy(css = "#addPage")
-    private WebElement useCurrentPagesOption;
-
-    @FindElementBy(css = "#dialog #input")
+    @FindBy(css = "#dialog #input")
     private WebElement dialogInputField;
 
-    @FindElementBy(css = "#dialog #actionButton")
+    @FindBy(css = "#dialog #actionButton")
     private WebElement confirmDialogButton;
 
-    @FindElementBy(css = "#dialog #cancel-button")
+    @FindBy(css = "#dialog #cancel-button")
     private WebElement cancelDialogButton;
 
-    @FindElementBy(css = "settings-startup-url-entry .text-elide.secondary")
+    @FindBy(css = "settings-startup-url-entry .text-elide.secondary")
     private List<WebElement> startupPagesUrls;
 
     public OnStartupSettingsPage(WebDriver driver) {

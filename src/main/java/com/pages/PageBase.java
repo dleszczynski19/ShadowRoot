@@ -1,11 +1,8 @@
 package com.pages;
 
-import com.shadow.driver.ShadowDriver;
-import io.github.sukgu.support.ElementFieldDecorator;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.pagefactory.DefaultElementLocatorFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,23 +14,19 @@ public abstract class PageBase {
     private static final Logger logger = LoggerFactory.getLogger(PageBase.class.getName());
     private static final int SLEEP_MS = 100;
 
-    protected final WebDriver driver;
-    protected final WebDriverWait wait;
-    protected final JavascriptExecutor jse;
+    protected WebDriver driver;
+    protected WebDriverWait wait;
+    protected JavascriptExecutor jse;
 
     public PageBase(WebDriver driver) {
-        if (driver instanceof ShadowDriver) {
-            WebDriver baseDriver = ((ShadowDriver) driver).getDriver();
-            ElementFieldDecorator decorator = new ElementFieldDecorator(new DefaultElementLocatorFactory(baseDriver));
-            // need to use decorator if you want to use @FindElementBy in your PageFactory model.
-            PageFactory.initElements(decorator, this);
-            this.jse = (JavascriptExecutor) baseDriver;
-        } else {
-            PageFactory.initElements(driver, this);
-            this.jse = (JavascriptExecutor) driver;
-        }
+        initDrivers(driver);
+        PageFactory.initElements(driver, this);
+    }
+
+    public void initDrivers(WebDriver driver) {
         this.driver = driver;
-        wait = new WebDriverWait(this.driver, Duration.ofSeconds(TIMEOUT_S), Duration.ofMillis(SLEEP_MS));
+        this.jse = (JavascriptExecutor) driver;
+        wait = new WebDriverWait(driver, Duration.ofSeconds(TIMEOUT_S), Duration.ofMillis(SLEEP_MS));
         logger.debug("Created WebDriverWait with timeout: " + TIMEOUT_S + "s and sleep: " + SLEEP_MS + "ms");
     }
 }

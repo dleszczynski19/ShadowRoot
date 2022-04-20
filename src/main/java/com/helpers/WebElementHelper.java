@@ -26,12 +26,12 @@ public class WebElementHelper {
     }
 
     public void highlightElement(WebElement element) {
-        setHighlightElement(element);
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        clearHighlightBackground(element);
+//        setHighlightElement(element);
+//        try {
+//            Thread.sleep(1000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        clearHighlightBackground(element);
     }
 }
